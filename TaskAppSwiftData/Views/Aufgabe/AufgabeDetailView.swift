@@ -116,7 +116,7 @@ struct AufgabeDetailView: View {
     let config = ModelConfiguration(schema:schema, isStoredInMemoryOnly: false)
     let container = try! ModelContainer(for: schema, configurations: config)
     
-    let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Hello Welt", zeitpunktZumAbschliessen: Date().timeIntervalSince1970)
+    let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Hello Welt", zeitpunktZumAbschliessen: Date().timeIntervalSince1970, tags: [])
     
     return AufgabeDetailView(aufgabe: aufgabe)
         .modelContainer(container)

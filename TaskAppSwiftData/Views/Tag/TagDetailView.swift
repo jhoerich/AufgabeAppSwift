@@ -69,7 +69,7 @@ struct TagDetailView: View {
     let schema = Schema([Aufgabe.self])
     let config = ModelConfiguration(schema:schema, isStoredInMemoryOnly: false)
     let container = try! ModelContainer(for: schema, configurations: config)
-    let tag = Tag(bezeichnung: "Filme")
+    let tag = Tag(bezeichnung: "Filme", aufgaben: [])
     return TagDetailView(tag:tag)
         .modelContainer(container)
 }

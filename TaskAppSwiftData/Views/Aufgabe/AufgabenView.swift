@@ -53,7 +53,17 @@ struct AufgabenView: View {
                                 .font(.system(size: 12))
                         }
                     }
-                }
+                }.onDelete(perform: { offset in
+                    offset.forEach {
+                        index in
+                        let aufgabeGruppiertNachDatum = sortedList[index]
+                        let aufgabenZumDatum = gruppierteAufgaben[aufgabeGruppiertNachDatum]!
+                        for aufgabeToDelete in aufgabenZumDatum {
+                            modelContext.delete(aufgabeToDelete)
+                            NotificationManager.instance.deleteScheduledNotification(aufgabe: aufgabeToDelete)
+                        }
+                    }
+                })
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -98,7 +108,7 @@ struct AufgabenView: View {
     let schema = Schema([Aufgabe.self])
     let configuration = ModelConfiguration(schema:schema, isStoredInMemoryOnly: false)
     let container = try! ModelContainer(for: schema, configurations: configuration)
-    let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Hund", zeitpunktZumAbschliessen: Date().timeIntervalSince1970)
+    let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Hund", zeitpunktZumAbschliessen: Date().timeIntervalSince1970, tags: [])
     try! container.mainContext.delete(model:Aufgabe.self)
     container.mainContext.insert(aufgabe)
     return AufgabenView()

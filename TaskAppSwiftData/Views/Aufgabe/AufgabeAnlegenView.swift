@@ -104,8 +104,8 @@ struct AufgabeAnlegenView: View {
             let aufgabe = Aufgabe(
                 bezeichnung: self.bezeichnung,
                 bemerkung: self.bemerkung,
-                zeitpunktZumAbschliessen: self.zeitpunktZumAbschliessen.timeIntervalSince1970)
-            
+                zeitpunktZumAbschliessen: self.zeitpunktZumAbschliessen.timeIntervalSince1970,
+                tags: self.zugeordneteTags)
             if(self.abgeschlossen) {
                 aufgabe.abschliessen()
             }

@@ -26,22 +26,18 @@ class Aufgabe : Hashable, Identifiable {
         return zeitpunktAbgeschlossen != nil
     }
     
-    init(bezeichnung: String, bemerkung: String, zeitpunktZumAbschliessen: TimeInterval) {
+    init(bezeichnung: String, bemerkung: String, zeitpunktZumAbschliessen: TimeInterval, tags : [Tag]) {
         self.id = UUID()
         self.bezeichnung = bezeichnung
         self.bemerkung = bemerkung
         self.erzeugt = Date().timeIntervalSince1970
         self.zeitpunktZumAbschliessen = zeitpunktZumAbschliessen
-        self.tags = []
+        self.tags = tags
     }
     
     func abschliessen() {
         zeitpunktAbgeschlossen = Date().timeIntervalSince1970
         NotificationManager.instance.deleteScheduledNotification(aufgabe: self)
-    }
-    
-    func tagHinzufuegen(tags : [Tag]) {
-        self.tags?.append(contentsOf: tags)
     }
     
     func validate() -> String {
@@ -50,12 +46,4 @@ class Aufgabe : Hashable, Identifiable {
         }
         return ""
     }
-    
-    func istVerspaetetAbgeschlossen() -> Bool {
-        guard let unwrappedAbgeschlossen = zeitpunktAbgeschlossen else {
-            return false
-        }
-        return unwrappedAbgeschlossen > self.zeitpunktZumAbschliessen
-    }
-
 }

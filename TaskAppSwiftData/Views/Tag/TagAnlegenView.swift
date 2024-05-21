@@ -82,8 +82,8 @@ struct TagAnlegenView: View {
     
     private func speichern() -> String {
         withAnimation {
-            let tag = Tag(bezeichnung: self.bezeichnung)
-            tag.aufgabenHinzufuegen(aufgaben: self.zugeordneteAufgaben)
+            let tag = Tag(bezeichnung: self.bezeichnung,
+                          aufgaben: self.zugeordneteAufgaben)
             
             let errors = tag.validate()
             if(errors.isEmpty) {
@@ -101,7 +101,8 @@ struct TagAnlegenView: View {
     
     try! container.mainContext.delete(model:Aufgabe.self)
     for _ in 1...5 {
-        let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Hund", zeitpunktZumAbschliessen: Date().timeIntervalSince1970)
+        let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Hund", zeitpunktZumAbschliessen: Date().timeIntervalSince1970,
+            tags: [])
         container.mainContext.insert(aufgabe)
     }
    

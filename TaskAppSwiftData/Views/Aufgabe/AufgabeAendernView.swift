@@ -115,7 +115,7 @@ struct AufgabeAendernView: View {
     let schema = Schema([Aufgabe.self])
     let config = ModelConfiguration(schema:schema, isStoredInMemoryOnly: false)
     let container = try! ModelContainer(for: schema, configurations: config)
-    let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Test12", zeitpunktZumAbschliessen: Date().timeIntervalSince1970)
+    let aufgabe = Aufgabe(bezeichnung: "Test123", bemerkung: "Test12", zeitpunktZumAbschliessen: Date().timeIntervalSince1970, tags: [])
     
     return AufgabeAendernView(aufgabe: aufgabe, bezeichnung: aufgabe.bezeichnung,
                               bemerkung: aufgabe.bemerkung, zeitpunktZumAbschliessen: Date(timeIntervalSince1970: aufgabe.zeitpunktZumAbschliessen))

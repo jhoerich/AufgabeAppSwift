@@ -14,14 +14,10 @@ class Tag : Hashable, Identifiable {
     var bezeichnung : String = ""
     @Relationship var aufgaben : [Aufgabe]?
     
-    init(bezeichnung : String) {
+    init(bezeichnung : String, aufgaben:  [Aufgabe]) {
         self.id = UUID()
         self.bezeichnung = bezeichnung
-        self.aufgaben = []
-    }
-    
-    func aufgabenHinzufuegen(aufgaben: [Aufgabe]) {
-        self.aufgaben?.append(contentsOf: aufgaben)
+        self.aufgaben = aufgaben
     }
     
     func validate() -> String {
