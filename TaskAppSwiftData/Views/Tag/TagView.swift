@@ -15,19 +15,21 @@ struct TagView: View {
     var body: some View {
         VStack(alignment:.leading) {
             HStack {
-                Text("\(tag.bezeichnung)")
-                    .font(.system(size: 18))
-                Spacer()
-                HStack {
-                    Text("Aufgaben:")
-                    if let aufgaben = tag.aufgaben {
-                        Text("\(aufgaben.count)")
-                    }else {
-                        Text("0")
+                VStack(alignment:.leading) {
+                    Text("\(tag.bezeichnung)")
+                        .font(.system(size: 18))
+                    HStack {
+                        Text("Aufgaben:")
+                        if let aufgaben = tag.aufgaben {
+                            Text("\(aufgaben.count)")
+                        }else {
+                            Text("0")
+                        }
                     }
+                    .font(.system(size: 12))
+                    .foregroundStyle(.gray)
                 }
-                .font(.system(size: 12))
-                .foregroundStyle(.black)
+                Spacer()
             }
         }.padding()
     }

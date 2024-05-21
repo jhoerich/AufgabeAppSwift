@@ -32,12 +32,6 @@ struct TagDetailView: View {
                                 ForEach(aufgaben, id:\.id) {
                                     aufgabe in
                                     AufgabeView(aufgabe: aufgabe)
-                                    /*
-                                    Button {
-                                        self.ausgewaehlteAufgabe = aufgabe
-                                    } label: {
-                                        
-                                    }*/
                                 }
                             }
                         }
